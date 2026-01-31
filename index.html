@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1> Contact Management System</h1>
+</header>
+
+<section class="stats">
+    <div>
+        <h3 id="totalCount">0</h3>
+        <p>Total Contacts</p>
+    </div>
+</section>
+
+<main class="container">
+    <section class="list-section">
+        <div class="list-header">
+            <h2>Contacts</h2>
+            <input type="text" id="search" placeholder="Search by name or phone">
+        </div>
+        <div id="contactList"></div>
+    </section>
+</main>
+
+<!-- Slide-in Form -->
+<section class="form-section" id="formSection">
+    <h2>Add / Update Contact</h2>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="text" id="phone" placeholder="Phone (10 digits)" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Save Contact</button>
+    </form>
+</section>
+<footer>Created by <span>Rajendra</span></footer>
+
+<!-- Floating Action Button -->
+<button class="fab" onclick="UI.toggleForm()">＋</button>
+
+<!-- Theme Toggle Buttons -->
+<div class="theme-toggle">
+    <button id="darkToggle">🌙</button>
+    <button id="rgbToggle">🎛️</button>
+</div>
+
+<script src="storage.js"></script>
+<script src="validation.js"></script>
+<script src="ui.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
