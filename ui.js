@@ -10,7 +10,8 @@ const UI = {
                 <div class="empty-state">
                     <h3>No contacts yet</h3>
                     <p>Click + to add your first contact</p>
-                </div>`;
+                </div>
+            `;
             return;
         }
 
@@ -26,11 +27,23 @@ const UI = {
                         <button onclick="App.edit(${i})">✏️</button>
                         <button onclick="App.remove(${i})">🗑️</button>
                     </div>
-                </div>`;
+                </div>
+            `;
         });
     },
 
     toggleForm() {
         this.form.classList.toggle("active");
+    },
+
+    /* 🔔 TOAST NOTIFICATION */
+    notify(message, type = "success") {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.className = `show ${type}`;
+
+        setTimeout(() => {
+            toast.className = "";
+        }, 2500);
     }
 };
