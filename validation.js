@@ -1,6 +1,6 @@
 const Validation = {
     phone(phone) {
-        return /^\d{10}$/.test(phone);
+        return /^[6-9]\d{9}$/.test(phone);
     },
 
     duplicate(phone, contacts, index) {

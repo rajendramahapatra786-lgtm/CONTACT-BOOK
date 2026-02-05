@@ -24,7 +24,10 @@ const App = {
         }
 
         if (!Validation.phone(phone)) {
-            UI.notify("Phone must be 10 digits ❌", "error");
+            UI.notify(
+                "Enter a valid Indian mobile number (starts with 6–9) ❌",
+                "error"
+            );
             return;
         }
 
