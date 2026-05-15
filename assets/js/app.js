@@ -31,6 +31,12 @@ const App = {
             return;
         }
 
+        /* Email validation */
+        if (!Validation.email(email)) {
+            UI.notify("Enter a valid email address ❌", "error");
+            return;
+        }
+
         if (Validation.duplicate(phone, this.contacts, this.editIndex)) {
             UI.notify("Duplicate contact ❌", "error");
             return;
@@ -106,6 +112,7 @@ document.getElementById("contactForm").addEventListener("submit", e => {
 /* ===== SEARCH ===== */
 document.getElementById("search").addEventListener("input", e => {
     const value = e.target.value.toLowerCase();
+
     UI.render(
         App.contacts.filter(c =>
             c.name.toLowerCase().includes(value) ||
@@ -114,9 +121,45 @@ document.getElementById("search").addEventListener("input", e => {
     );
 });
 
+/* ===== INPUT RESTRICTIONS ===== */
+
+/* Clean invalid pasted values */
+nameInput.addEventListener("input", () => {
+    nameInput.value = Validation.cleanName(nameInput.value);
+});
+
+phoneInput.addEventListener("input", () => {
+    phoneInput.value = Validation.cleanPhone(phoneInput.value);
+});
+
+emailInput.addEventListener("input", () => {
+    emailInput.value = Validation.cleanEmail(emailInput.value);
+});
+
+/* Block invalid typing */
+
+/* Name: allow only letters and spaces */
+nameInput.addEventListener("keypress", e => {
+    const char = String.fromCharCode(e.which);
+
+    if (!/[a-zA-Z\s]/.test(char)) {
+        e.preventDefault();
+    }
+});
+
+/* Phone: allow only numbers */
+phoneInput.addEventListener("keypress", e => {
+    const char = String.fromCharCode(e.which);
+
+    if (!/[0-9]/.test(char)) {
+        e.preventDefault();
+    }
+});
+
 /* ===== THEME TOGGLES ===== */
 document.getElementById("darkToggle").onclick = () => {
     document.body.classList.toggle("dark");
+
     localStorage.setItem(
         "darkMode",
         document.body.classList.contains("dark") ? "on" : "off"
@@ -125,6 +168,7 @@ document.getElementById("darkToggle").onclick = () => {
 
 document.getElementById("rgbToggle").onclick = () => {
     document.body.classList.toggle("rgb");
+
     localStorage.setItem(
         "rgbMode",
         document.body.classList.contains("rgb") ? "on" : "off"
