@@ -267,3 +267,36 @@ footer:hover {
 #toast.error {
     background: #e74c3c;
 }
+
+.contact-info{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.profile-image,
+.avatar-letter{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.profile-image{
+    border:2px solid #6c63ff;
+}
+
+.avatar-letter{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#6c63ff;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.contact-details{
+    display:flex;
+    flex-direction:column;
+}

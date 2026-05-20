@@ -16,19 +16,43 @@ const UI = {
         }
 
         contacts.forEach((c, i) => {
+
+            const avatar = c.name.charAt(0).toUpperCase();
+
             this.list.innerHTML += `
-                <div class="card">
-                    <div>
-                        <strong>${c.name}</strong>
-                        <p>${c.phone}</p>
-                        <small>${c.email}</small>
-                    </div>
-                    <div class="actions">
-                        <button onclick="App.edit(${i})">✏️</button>
-                        <button onclick="App.remove(${i})">🗑️</button>
-                    </div>
+        <div class="card">
+
+            <div class="contact-info">
+
+                ${c.image
+                    ? `
+                        <img
+                            src="${c.image}"
+                            class="profile-image"
+                            alt="${c.name}">
+                        `
+                    : `
+                        <div class="avatar-letter">
+                            ${avatar}
+                        </div>
+                        `
+                }
+
+                <div class="contact-details">
+                    <strong>${c.name}</strong>
+                    <p>${c.phone}</p>
+                    <small>${c.email}</small>
                 </div>
-            `;
+
+            </div>
+
+            <div class="actions">
+                <button onclick="App.edit(${i})">✏️</button>
+                <button onclick="App.remove(${i})">🗑️</button>
+            </div>
+
+        </div>
+    `;
         });
     },
 

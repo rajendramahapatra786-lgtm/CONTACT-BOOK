@@ -2,6 +2,8 @@
 const nameInput = document.getElementById("name");
 const phoneInput = document.getElementById("phone");
 const emailInput = document.getElementById("email");
+const profileImageInput = document.getElementById("profileImage");
+
 
 const App = {
     contacts: Storage.get(),
@@ -42,7 +44,16 @@ const App = {
             return;
         }
 
-        const contact = { name, phone, email };
+        const contact = {
+            name,
+            phone,
+            email,
+            image: imageData || (
+                this.editIndex !== null
+                    ? this.contacts[this.editIndex].image
+                    : null
+            )
+        };
 
         const isEdit = this.editIndex !== null;
 
@@ -54,6 +65,8 @@ const App = {
         }
 
         Storage.save(this.contacts);
+        imageData = null;
+        profileImageInput.value = "";
         UI.render(this.contacts);
         this.updateStats();
         UI.toggleForm();
@@ -95,6 +108,24 @@ const App = {
         }
     }
 };
+
+let imageData = null;
+profileImageInput.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        imageData = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+
+});
+
 
 /* ===== FORM SUBMIT ===== */
 document.getElementById("contactForm").addEventListener("submit", e => {

@@ -3,32 +3,6 @@
 # 🚀 FUTURE IMPROVEMENTS LIST
 
 ---
-
-# 1️⃣ Add Contact Avatar / Profile Image
-
-## Why?
-
-Makes the UI modern and professional.
-
-## Features
-
-* Upload profile image
-* Show first-letter avatar
-* Default avatar system
-
-## Example
-
-```js
-const avatar = c.name.charAt(0).toUpperCase();
-```
-
-## Future Upgrade
-
-* Image cropping
-* Camera capture
-
----
-
 # 2️⃣ Add Favorite Contacts ⭐
 
 ## Why?
