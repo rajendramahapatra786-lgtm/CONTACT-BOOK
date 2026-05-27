@@ -2,31 +2,7 @@
 
 # 🚀 FUTURE IMPROVEMENTS LIST
 
----
-# 2️⃣ Add Favorite Contacts ⭐
 
-## Why?
-
-Users can pin important contacts.
-
-## Add Field
-
-```js
-{
-  name,
-  phone,
-  email,
-  favorite: true
-}
-```
-
-## Features
-
-* Favorite button
-* Show favorites at top
-* Filter favorites only
-
----
 
 # 3️⃣ Add Contact Categories
 

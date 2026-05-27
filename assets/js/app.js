@@ -10,8 +10,15 @@ const App = {
     editIndex: null,
 
     init() {
+
+        this.contacts.sort(
+            (a, b) => b.favorite - a.favorite
+        );
+
         UI.render(this.contacts);
+
         this.updateStats();
+
         this.loadThemes();
     },
 
@@ -48,6 +55,12 @@ const App = {
             name,
             phone,
             email,
+
+            favorite:
+                this.editIndex !== null
+                    ? this.contacts[this.editIndex].favorite
+                    : false,
+
             image: imageData || (
                 this.editIndex !== null
                     ? this.contacts[this.editIndex].image
@@ -63,6 +76,10 @@ const App = {
         } else {
             this.contacts.push(contact);
         }
+
+        this.contacts.sort(
+            (a, b) => b.favorite - a.favorite
+        );
 
         Storage.save(this.contacts);
         imageData = null;
@@ -97,6 +114,22 @@ const App = {
 
         UI.notify("Contact deleted 🗑️", "error");
     },
+
+    toggleFavorite(index) {
+
+    this.contacts[index].favorite =
+        !this.contacts[index].favorite;
+
+    this.contacts.sort(
+        (a, b) => b.favorite - a.favorite
+    );
+
+    Storage.save(this.contacts);
+
+    UI.render(this.contacts);
+
+    this.updateStats();
+},
 
     loadThemes() {
         if (localStorage.getItem("darkMode") === "on") {

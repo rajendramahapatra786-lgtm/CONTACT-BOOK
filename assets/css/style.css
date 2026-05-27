@@ -300,3 +300,21 @@ footer:hover {
     display:flex;
     flex-direction:column;
 }
+
+.favorite-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+
+    color:#888;
+}
+
+.favorite-btn.active {
+    color: gold;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.2);
+}

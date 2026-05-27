@@ -47,9 +47,20 @@ const UI = {
             </div>
 
             <div class="actions">
-                <button onclick="App.edit(${i})">✏️</button>
-                <button onclick="App.remove(${i})">🗑️</button>
-            </div>
+
+    <button
+        onclick="App.toggleFavorite(${i})"
+        class="favorite-btn">
+
+        ${c.favorite ? "⭐" : "☆"}
+
+    </button>
+
+    <button onclick="App.edit(${i})">✏️</button>
+
+    <button onclick="App.remove(${i})">🗑️</button>
+
+</div>
 
         </div>
     `;
