@@ -42,6 +42,7 @@ const UI = {
                     <strong>${c.name}</strong>
                     <p>${c.phone}</p>
                     <small>${c.email}</small>
+                    <p class="category">${c.category}</p>
                 </div>
 
             </div>

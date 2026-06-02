@@ -37,6 +37,15 @@
             <input type="text" id="name" placeholder="Full Name" required>
             <input type="tel" id="phone" placeholder="Phone (10 digits)" maxlength="10" inputmode="numeric" required>
             <input type="email" id="email" placeholder="Email" required>
+
+            <select id="category" required>
+                <option value="">Select Category</option>
+                <option value="Family">Family</option>
+                <option value="Friends">Friends</option>
+                <option value="Work">Work</option>
+                <option value="Emergency">Emergency</option>
+            </select>
+
             <input type="file" id="profileImage" accept="image/*">
             <button type="submit">Save Contact</button>
         </form>

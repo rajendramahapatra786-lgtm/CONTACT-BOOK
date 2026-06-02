@@ -3,6 +3,7 @@ const nameInput = document.getElementById("name");
 const phoneInput = document.getElementById("phone");
 const emailInput = document.getElementById("email");
 const profileImageInput = document.getElementById("profileImage");
+// const category = document.getElementById("category").value;
 
 
 const App = {
@@ -26,7 +27,7 @@ const App = {
         document.getElementById("totalCount").innerText = this.contacts.length;
     },
 
-    save(name, phone, email) {
+    save(name, phone, email, category) {
         if (!name.trim()) {
             UI.notify("Name is required ❌", "error");
             return;
@@ -55,6 +56,7 @@ const App = {
             name,
             phone,
             email,
+            category,
 
             favorite:
                 this.editIndex !== null
@@ -167,7 +169,9 @@ document.getElementById("contactForm").addEventListener("submit", e => {
     App.save(
         nameInput.value,
         phoneInput.value,
-        emailInput.value
+        emailInput.value,
+        document.getElementById("category").value
+
     );
 
     e.target.reset();

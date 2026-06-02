@@ -3,28 +3,6 @@
 # 🚀 FUTURE IMPROVEMENTS LIST
 
 
-
-# 3️⃣ Add Contact Categories
-
-## Categories Examples
-
-* Family
-* Friends
-* Work
-* Emergency
-
-## Benefits
-
-* Better organization
-* More realistic app behavior
-
-## Future Features
-
-* Filter by category
-* Color badges
-
----
-
 # 4️⃣ Add Export & Import System
 
 ## Why?
