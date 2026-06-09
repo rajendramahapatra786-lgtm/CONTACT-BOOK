@@ -1,71 +1,7 @@
 # 📒 Contact Book Project 4
 
-# 🚀 FUTURE IMPROVEMENTS LIST
 
 
-# 4️⃣ Add Export & Import System
-
-## Why?
-
-Professional apps support backup.
-
-## Features
-
-* Export JSON
-* Import JSON
-* Download contacts
-* Restore contacts
-
-## Example
-
-```js
-const data = JSON.stringify(contacts);
-```
-
----
-
-# 5️⃣ Add Data Encryption 🔐
-
-## Current Problem
-
-Data is visible in localStorage.
-
-## Improvement
-
-Encrypt before storing.
-
-## Example
-
-```js
-btoa(JSON.stringify(data))
-```
-
-Decode:
-
-```js
-JSON.parse(atob(data))
-```
-
-## Advanced Future Upgrade
-
-* AES encryption
-* Password-protected vault
-
----
-
-# 6️⃣ Add Keyboard Shortcuts ⌨️
-
-## Features
-
-* Ctrl + N → Open Form
-* ESC → Close Form
-* Ctrl + F → Search
-
-## Why?
-
-Makes app feel advanced.
-
----
 
 # 7️⃣ Add Responsive Mobile Design 📱
 

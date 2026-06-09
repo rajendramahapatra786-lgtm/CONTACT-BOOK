@@ -119,19 +119,19 @@ const App = {
 
     toggleFavorite(index) {
 
-    this.contacts[index].favorite =
-        !this.contacts[index].favorite;
+        this.contacts[index].favorite =
+            !this.contacts[index].favorite;
 
-    this.contacts.sort(
-        (a, b) => b.favorite - a.favorite
-    );
+        this.contacts.sort(
+            (a, b) => b.favorite - a.favorite
+        );
 
-    Storage.save(this.contacts);
+        Storage.save(this.contacts);
 
-    UI.render(this.contacts);
+        UI.render(this.contacts);
 
-    this.updateStats();
-},
+        this.updateStats();
+    },
 
     loadThemes() {
         if (localStorage.getItem("darkMode") === "on") {
@@ -242,6 +242,68 @@ document.getElementById("rgbToggle").onclick = () => {
         document.body.classList.contains("rgb") ? "on" : "off"
     );
 };
+
+
+/* ===== KEYBOARD SHORTCUTS ===== */
+
+document.addEventListener("keydown", (e) => {
+
+    /* ============================
+    Alt + N → Open Form 
+    =================================*/
+
+
+    if (e.altKey && e.key.toLowerCase() === "n") {
+
+        e.preventDefault();
+
+        const form = document.getElementById("formSection");
+
+        if (!form.classList.contains("active")) {
+
+            UI.toggleForm();
+
+            nameInput.focus();
+
+            UI.notify("Add Contact Form Opened ⌨️");
+        }
+    }
+
+    /*======================
+     ESC → Close Form 
+     ========================*/
+
+    if (e.key === "Escape") {
+
+        const form = document.getElementById("formSection");
+
+        if (form.classList.contains("active")) {
+
+            App.editIndex = null;
+
+            document.getElementById("contactForm").reset();
+
+            profileImageInput.value = "";
+
+            UI.toggleForm();
+
+            UI.notify("Form Closed ⌨️");
+        }
+    }
+
+    /*==================================
+     Ctrl + F → Focus Search 
+     ===================================*/
+
+    if (e.ctrlKey && e.key.toLowerCase() === "f") {
+
+        e.preventDefault();
+
+        document.getElementById("search").focus();
+
+        UI.notify("Search Activated 🔍");
+    }
+});
 
 /* ===== START APP ===== */
 App.init();
