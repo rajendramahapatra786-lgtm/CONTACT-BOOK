@@ -1,32 +1,4 @@
-# 📒 Contact Book Project 4
 
-
-
-
-# 7️⃣ Add Responsive Mobile Design 📱
-
-## Current Issue
-
-Desktop-focused layout.
-
-## Improvement
-
-Add media queries.
-
-## Example
-
-```css
-@media (max-width: 768px)
-```
-
-## Mobile Features
-
-* Responsive cards
-* Mobile FAB positioning
-* Smaller forms
-* Better spacing
-
----
 
 # 8️⃣ Improve Search System 🔍
 

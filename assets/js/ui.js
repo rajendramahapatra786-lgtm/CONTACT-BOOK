@@ -69,7 +69,12 @@ const UI = {
     },
 
     toggleForm() {
+
         this.form.classList.toggle("active");
+
+        document
+            .getElementById("overlay")
+            .classList.toggle("active");
     },
 
     /* 🔔 TOAST NOTIFICATION */
@@ -83,3 +88,16 @@ const UI = {
         }, 2500);
     }
 };
+
+document
+    .getElementById("overlay")
+    .addEventListener("click", () => {
+
+        UI.form.classList.remove("active");
+
+        document
+            .getElementById("overlay")
+            .classList.remove("active");
+    });
+
+    

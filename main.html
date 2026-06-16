@@ -31,8 +31,17 @@
     </main>
 
     <!-- Slide-in Form -->
+    <div id="overlay" class="overlay"></div>
     <section class="form-section" id="formSection">
-        <h2>Add / Update Contact</h2>
+        <div class="form-header">
+
+            <h2>Add / Update Contact</h2>
+
+            <button type="button" class="close-btn" onclick="UI.toggleForm()">
+                ✕
+            </button>
+
+        </div>
         <form id="contactForm">
             <input type="text" id="name" placeholder="Full Name" required>
             <input type="tel" id="phone" placeholder="Phone (10 digits)" maxlength="10" inputmode="numeric" required>
