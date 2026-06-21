@@ -179,15 +179,114 @@ document.getElementById("contactForm").addEventListener("submit", e => {
 
 /* ===== SEARCH ===== */
 document.getElementById("search").addEventListener("input", e => {
+
     const value = e.target.value.toLowerCase();
 
-    UI.render(
-        App.contacts.filter(c =>
-            c.name.toLowerCase().includes(value) ||
-            c.phone.includes(value)
-        )
+    const filtered = App.contacts.filter(c =>
+        c.name.toLowerCase().includes(value) ||
+        c.phone.includes(value) ||
+        c.email.toLowerCase().includes(value) ||
+        c.category.toLowerCase().includes(value)
     );
+
+    UI.render(filtered, value);
 });
+
+/* ===== CATEGORY FILTER ===== */
+
+document.getElementById("filterCategory")
+    .addEventListener("change", e => {
+
+        const category = e.target.value;
+
+        if (!category) {
+            UI.render(App.contacts);
+            return;
+        }
+
+        const filtered = App.contacts.filter(c =>
+            c.category === category
+        );
+
+        UI.render(filtered);
+    });
+
+
+/* ===== VOICE SEARCH ===== */
+
+document.getElementById("voiceSearch")
+    .addEventListener("click", () => {
+
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            UI.notify("Voice search not supported ❌", "error");
+            console.log("SpeechRecognition not available");
+            return;
+        }
+
+        const micBtn = document.getElementById("voiceSearch");
+        const recognition = new SpeechRecognition();
+
+        recognition.lang = "en-US";
+        recognition.interimResults = false;
+
+
+        micBtn.disabled = true;
+
+        recognition.start();
+
+        UI.notify("Listening... 🎤");
+
+        recognition.onstart = function () {
+            console.log("Mic started");
+        };
+
+        recognition.onresult = function (event) {
+
+            let text = event.results[0][0].transcript.toLowerCase();
+
+            text = text.replace(/[.,!?]/g, "").trim();
+
+            if (!text) {
+                micBtn.disabled = false;
+                UI.notify("No voice detected 🎤", "error");
+                return;
+            }
+
+            console.log("You said:", text);
+
+            document.getElementById("search").value = text;
+
+            const filtered = App.contacts.filter(c =>
+                c.name.toLowerCase().includes(text) ||
+                c.phone.includes(text) ||
+                c.email.toLowerCase().includes(text) ||
+                c.category.toLowerCase().includes(text)
+            );
+
+            UI.render(filtered, text);
+
+            UI.notify("Voice Search Success ✅");
+        };
+
+        recognition.onerror = function (event) {
+
+            console.log("Speech error:", event.error);
+
+            micBtn.disabled = false;
+
+            UI.notify("Mic error: " + event.error, "error");
+        };
+
+        recognition.onend = function () {
+            console.log("Mic ended");
+
+            micBtn.disabled = false;
+        };
+    });
 
 /* ===== INPUT RESTRICTIONS ===== */
 
@@ -304,6 +403,8 @@ document.addEventListener("keydown", (e) => {
         UI.notify("Search Activated 🔍");
     }
 });
+
+
 
 /* ===== START APP ===== */
 App.init();

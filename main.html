@@ -24,7 +24,23 @@
         <section class="list-section">
             <div class="list-header">
                 <h2>Contacts</h2>
-                <input type="text" id="search" placeholder="Search by name or phone">
+                <div class="search-box">
+
+                    <input type="text" id="search" placeholder="Search by name, phone, email">
+
+                    <button id="voiceSearch">🎤</button>
+
+                </div>
+
+
+                <select id="filterCategory">
+                    <option value="">All Categories</option>
+                    <option value="Family">Family</option>
+                    <option value="Friends">Friends</option>
+                    <option value="Work">Work</option>
+                    <option value="Emergency">Emergency</option>
+                </select>
+
             </div>
             <div id="contactList"></div>
         </section>

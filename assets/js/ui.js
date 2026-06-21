@@ -2,7 +2,7 @@ const UI = {
     list: document.getElementById("contactList"),
     form: document.getElementById("formSection"),
 
-    render(contacts) {
+    render(contacts, searchValue = "") {
         this.list.innerHTML = "";
 
         if (contacts.length === 0) {
@@ -18,6 +18,24 @@ const UI = {
         contacts.forEach((c, i) => {
 
             const avatar = c.name.charAt(0).toUpperCase();
+
+            let displayName = c.name;
+
+if (searchValue) {
+
+    // escape special characters
+    const safeSearch = searchValue.replace(
+        /[.*+?^${}()|[\]\\]/g,
+        "\\$&"
+    );
+
+    const regex = new RegExp(safeSearch, "gi");
+
+    displayName = c.name.replace(
+        regex,
+        `<mark>$&</mark>`
+    );
+}
 
             this.list.innerHTML += `
         <div class="card">
@@ -39,7 +57,7 @@ const UI = {
                 }
 
                 <div class="contact-details">
-                    <strong>${c.name}</strong>
+                    <strong>${displayName}</strong>
                     <p>${c.phone}</p>
                     <small>${c.email}</small>
                     <p class="category">${c.category}</p>
@@ -100,4 +118,4 @@ document
             .classList.remove("active");
     });
 
-    
+

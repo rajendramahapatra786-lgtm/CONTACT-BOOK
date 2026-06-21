@@ -1,20 +1,6 @@
 
 
-# 8️⃣ Improve Search System 🔍
 
-## Current Search
-
-* Name
-* Phone
-
-## Future Upgrade
-
-* Email search
-* Category search
-* Instant search highlight
-* Voice search
-
----
 
 # 9️⃣ Add Sorting System 📊
 
