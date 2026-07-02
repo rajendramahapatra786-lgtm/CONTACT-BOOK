@@ -16,7 +16,7 @@ const App = {
             (a, b) => b.favorite - a.favorite
         );
 
-        UI.render(this.contacts);
+        applyFiltersAndSort();
 
         this.updateStats();
 
@@ -57,6 +57,11 @@ const App = {
             phone,
             email,
             category,
+
+            createdAt:
+                this.editIndex !== null
+                    ? this.contacts[this.editIndex].createdAt
+                    : Date.now(),
 
             favorite:
                 this.editIndex !== null
@@ -177,40 +182,80 @@ document.getElementById("contactForm").addEventListener("submit", e => {
     e.target.reset();
 });
 
-/* ===== SEARCH ===== */
-document.getElementById("search").addEventListener("input", e => {
+// /* ===== SEARCH ===== */
+function applyFiltersAndSort() {
 
-    const value = e.target.value.toLowerCase();
+    let filtered = [...App.contacts];
 
-    const filtered = App.contacts.filter(c =>
-        c.name.toLowerCase().includes(value) ||
-        c.phone.includes(value) ||
-        c.email.toLowerCase().includes(value) ||
-        c.category.toLowerCase().includes(value)
-    );
+    // Search
+    const searchValue =
+        document.getElementById("search")
+            .value.toLowerCase();
 
-    UI.render(filtered, value);
-});
+    if (searchValue) {
+        filtered = filtered.filter(c =>
+            c.name.toLowerCase().includes(searchValue) ||
+            c.phone.includes(searchValue) ||
+            c.email.toLowerCase().includes(searchValue) ||
+            c.category.toLowerCase().includes(searchValue)
+        );
+    }
 
-/* ===== CATEGORY FILTER ===== */
+    // Category
+    const category =
+        document.getElementById("filterCategory").value;
 
-document.getElementById("filterCategory")
-    .addEventListener("change", e => {
-
-        const category = e.target.value;
-
-        if (!category) {
-            UI.render(App.contacts);
-            return;
-        }
-
-        const filtered = App.contacts.filter(c =>
+    if (category) {
+        filtered = filtered.filter(c =>
             c.category === category
         );
+    }
 
-        UI.render(filtered);
-    });
+    // Sort
+    const sortType =
+        document.getElementById("sortContacts").value;
 
+    switch (sortType) {
+
+        case "az":
+            filtered.sort((a, b) =>
+                a.name.localeCompare(b.name)
+            );
+            break;
+
+        case "za":
+            filtered.sort((a, b) =>
+                b.name.localeCompare(a.name)
+            );
+            break;
+
+        case "newest":
+            filtered.sort((a, b) =>
+                b.createdAt - a.createdAt
+            );
+            break;
+
+        case "oldest":
+            filtered.sort((a, b) =>
+                a.createdAt - b.createdAt
+            );
+            break;
+    }
+
+    UI.render(filtered);
+}
+
+document.getElementById("search")
+    .addEventListener("input",
+        applyFiltersAndSort);
+
+document.getElementById("filterCategory")
+    .addEventListener("change",
+        applyFiltersAndSort);
+
+document.getElementById("sortContacts")
+    .addEventListener("change",
+        applyFiltersAndSort);
 
 /* ===== VOICE SEARCH ===== */
 

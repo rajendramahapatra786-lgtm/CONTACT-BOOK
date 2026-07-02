@@ -1,22 +1,6 @@
 
 
 
-
-# 9️⃣ Add Sorting System 📊
-
-## Features
-
-* Sort A-Z
-* Sort newest
-* Sort oldest
-* Sort favorites
-
-## Benefits
-
-Better user experience.
-
----
-
 # 🔟 Add Contact Details Popup
 
 ## Current Problem

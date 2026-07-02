@@ -467,3 +467,15 @@ footer:hover {
     border: none;
     border-radius: 8px;
 }
+
+.filters{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.filters select{
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
