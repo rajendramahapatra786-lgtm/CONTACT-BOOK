@@ -13,48 +13,60 @@
         <h1> Contact Management System</h1>
     </header>
 
-    <section class="stats">
-        <div>
-            <h3 id="totalCount">0</h3>
-            <p>Total Contacts</p>
-        </div>
-    </section>
-
     <main class="container">
         <section class="list-section">
             <div class="list-header">
-                <h2>Contacts</h2>
-                <div class="search-box">
 
-                    <input type="text" id="search" placeholder="Search by name, phone, email">
+                <!-- Left Side -->
+                <div class="contact-heading">
 
-                    <button id="voiceSearch">🎤</button>
+                    <h2>👥 Contacts</h2>
+
+                    <span id="totalCountText">
+                        <span id="totalCount">0</span> contacts
+                    </span>
 
                 </div>
 
+                <!-- Right Side -->
+                <div class="toolbar">
 
-                <div class="filters">
+                    <div class="search-box">
 
-                    <select id="filterCategory">
-                        <option value="">All Categories</option>
-                        <option value="Family">Family</option>
-                        <option value="Friends">Friends</option>
-                        <option value="Work">Work</option>
-                        <option value="Emergency">Emergency</option>
-                    </select>
+                        <input type="text" id="search" placeholder="Search by name, phone, email">
 
-                    <select id="sortContacts">
-                        <option value="">Sort By</option>
-                        <option value="az">A-Z</option>
-                        <option value="za">Z-A</option>
-                        <option value="newest">Newest</option>
-                        <option value="oldest">Oldest</option>
-                    </select>
+                        <button id="voiceSearch">🎤</button>
+
+                    </div>
+
+                    <div class="filters">
+
+                        <select id="filterCategory">
+                            <option value="">All Categories</option>
+                            <option value="Family">Family</option>
+                            <option value="Friends">Friends</option>
+                            <option value="Work">Work</option>
+                            <option value="Emergency">Emergency</option>
+                        </select>
+
+                        <select id="sortContacts">
+                            <option value="">Sort By</option>
+                            <option value="az">A-Z</option>
+                            <option value="za">Z-A</option>
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                        </select>
+
+                    </div>
 
                 </div>
 
             </div>
-            <div id="contactList"></div>
+            <div class="contact-list-wrapper">
+
+                <div id="contactList"></div>
+
+            </div>
         </section>
     </main>
 

@@ -1,27 +1,5 @@
 
 
-
-# 🔟 Add Contact Details Popup
-
-## Current Problem
-
-Cards show limited details.
-
-## Future Improvement
-
-Click contact → open modal.
-
-## Show:
-
-* Full information
-* Profile image
-* Category
-* Notes
-* Call button
-* Email button
-
----
-
 # 1️⃣1️⃣ Add Direct Call & Email Buttons
 
 ## Call Feature

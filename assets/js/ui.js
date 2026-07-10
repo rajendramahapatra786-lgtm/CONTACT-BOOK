@@ -21,49 +21,51 @@ const UI = {
 
             let displayName = c.name;
 
-if (searchValue) {
+            if (searchValue) {
 
-    // escape special characters
-    const safeSearch = searchValue.replace(
-        /[.*+?^${}()|[\]\\]/g,
-        "\\$&"
-    );
+                // escape special characters
+                const safeSearch = searchValue.replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    "\\$&"
+                );
 
-    const regex = new RegExp(safeSearch, "gi");
+                const regex = new RegExp(safeSearch, "gi");
 
-    displayName = c.name.replace(
-        regex,
-        `<mark>$&</mark>`
-    );
-}
+                displayName = c.name.replace(
+                    regex,
+                    `<mark>$&</mark>`
+                );
+            }
 
             this.list.innerHTML += `
         <div class="card">
 
             <div class="contact-info">
 
-                ${c.image
-                    ? `
-                        <img
-                            src="${c.image}"
-                            class="profile-image"
-                            alt="${c.name}">
-                        `
-                    : `
-                        <div class="avatar-letter">
-                            ${avatar}
-                        </div>
-                        `
+    ${c.image
+                    ? `<img src="${c.image}" class="profile-image" alt="${c.name}">`
+                    : `<div class="avatar-letter">${avatar}</div>`
                 }
 
-                <div class="contact-details">
-                    <strong>${displayName}</strong>
-                    <p>${c.phone}</p>
-                    <small>${c.email}</small>
-                    <p class="category">${c.category}</p>
-                </div>
+    <div class="contact-details">
 
-            </div>
+        <strong>${displayName}</strong>
+
+        <p>${c.phone}</p>
+
+        <small>${c.email}</small>
+
+    </div>
+
+</div>
+
+<div class="contact-category">
+
+    <span class="category">
+        ${c.category}
+    </span>
+
+</div>
 
             <div class="actions">
 
