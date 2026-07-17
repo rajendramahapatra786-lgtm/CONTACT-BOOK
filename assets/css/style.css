@@ -27,13 +27,203 @@ body.dark {
     color: #e5e7eb;
 }
 
-/* ===== HEADER ===== */
-header {
-    background: linear-gradient(135deg, #020617, #0f172a);
-    color: white;
-    padding: 22px;
-    text-align: center;
+/* ===========================
+        NAVBAR
+=========================== */
+
+.navbar{
+
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:74px;
+
+    padding:0 28px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:linear-gradient(135deg,#020617,#111827);
+
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+
 }
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo{
+
+    width:40px;
+    height:40px;
+
+    border-radius:10px;
+
+    background:#5b5df7;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    flex-shrink:0;
+
+}
+
+.nav-left h1{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:white;
+
+    letter-spacing:.3px;
+
+}
+
+.nav-right{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+}
+
+
+.nav-btn{
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:.3s;
+
+    font-size:18px;
+
+}
+
+
+.nav-btn:hover{
+
+    background:#5b5df7;
+
+    transform:translateY(-2px);
+
+}
+
+.profile-menu{
+
+    position:relative;
+
+}
+
+.profile-dropdown{
+
+    position:absolute;
+
+    top:56px;
+    right:0;
+
+    width:180px;
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(12px);
+
+    transition:.25s;
+
+}
+
+.profile-menu:hover .profile-dropdown{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.profile-dropdown a{
+
+    display:block;
+
+    padding:14px 18px;
+
+    color:#111827;
+
+    text-decoration:none;
+
+}
+
+.profile-dropdown a:hover{
+
+    background:#f3f4f6;
+
+}
+
+.profile-menu:hover .profile-dropdown{
+
+    display:block;
+
+}
+
+body.dark .navbar{
+
+    background:#020617;
+
+}
+
+body.dark .profile-dropdown{
+
+    background:#111827;
+
+}
+
+body.dark .profile-dropdown a{
+
+    color:white;
+
+}
+
+body.dark .profile-dropdown a:hover{
+
+    background:#1e293b;
+
+}
+
 
 /* ===== STATS ===== */
 .stats {

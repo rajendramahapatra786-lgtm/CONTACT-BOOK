@@ -1,6 +1,5 @@
 
-
-# 1️⃣1️⃣ Add Direct Call & Email Buttons
+ 1️⃣1️⃣ Add Direct Call & Email Buttons
 
 ## Call Feature
 
