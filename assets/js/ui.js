@@ -120,4 +120,19 @@ document
             .classList.remove("active");
     });
 
+const imageInput = document.getElementById("profileImage");
+const fileName = document.getElementById("fileName");
 
+if (imageInput && fileName) {
+
+    imageInput.addEventListener("change", () => {
+
+        if (imageInput.files.length) {
+            fileName.textContent = imageInput.files[0].name;
+        } else {
+            fileName.textContent = "No image selected";
+        }
+
+    });
+
+}

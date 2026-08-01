@@ -1,55 +1,4 @@
 
- 1️⃣1️⃣ Add Direct Call & Email Buttons
-
-## Call Feature
-
-```html
-<a href="tel:${c.phone}">Call</a>
-```
-
-## Email Feature
-
-```html
-<a href="mailto:${c.email}">Email</a>
-```
-
-## Why?
-
-Makes app practical.
-
----
-
-# 1️⃣2️⃣ Improve UI Animations ✨
-
-## Add:
-
-* Smooth transitions
-* Hover animations
-* Loading effects
-* Card animations
-* Page transitions
-
-## Future Upgrade
-
-* GSAP animations
-* Framer Motion (React future)
-
----
-
-# 1️⃣3️⃣ Add Dark Mode Improvements 🌙
-
-## Improve:
-
-* Better contrast
-* Neon effects
-* RGB glow customization
-* Save theme permanently
-
-## Advanced Upgrade
-
-Theme customization panel.
-
----
 
 # 1️⃣4️⃣ Improve Notifications 🔔
 
@@ -58,7 +7,7 @@ Theme customization panel.
 Basic toast system.
 
 ## Future Upgrade
-
+/
 * Icons
 * Sound
 * Multiple toast queue

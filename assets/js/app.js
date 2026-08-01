@@ -341,7 +341,12 @@ nameInput.addEventListener("input", () => {
 });
 
 phoneInput.addEventListener("input", () => {
+
     phoneInput.value = Validation.cleanPhone(phoneInput.value);
+
+    // Limit to 10 digits
+    phoneInput.value = phoneInput.value.slice(0, 10);
+
 });
 
 emailInput.addEventListener("input", () => {
