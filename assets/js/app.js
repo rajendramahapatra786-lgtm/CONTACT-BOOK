@@ -107,6 +107,7 @@ const App = {
         nameInput.value = c.name;
         phoneInput.value = c.phone;
         emailInput.value = c.email;
+        document.getElementById("category").value = c.category;
         this.editIndex = index;
         UI.toggleForm();
     },

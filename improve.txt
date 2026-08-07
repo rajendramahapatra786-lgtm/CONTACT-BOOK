@@ -15,18 +15,6 @@ Basic toast system.
 
 ---
 
-# 1️⃣5️⃣ Add Notes Section 📝
-
-## Example
-
-Each contact can store:
-
-* Address
-* Birthday
-* Notes
-* Website
-* Social links
-
 ---
 
 # 1️⃣6️⃣ Add Recently Added Contacts
@@ -39,23 +27,7 @@ Each contact can store:
 
 ---
 
-# 1️⃣7️⃣ Add Search Highlighting
 
-## Example
-
-If searching:
-
-```plaintext
-raj
-```
-
-Highlight:
-
-```plaintext
-Rajendra
-```
-
----
 
 # 1️⃣8️⃣ Add Empty State Illustrations
 
