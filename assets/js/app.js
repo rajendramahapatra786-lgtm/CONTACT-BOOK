@@ -27,29 +27,46 @@ const App = {
         document.getElementById("totalCount").innerText = this.contacts.length;
     },
 
+
     save(name, phone, email, category) {
+
+        category = category || "Other";
+
         if (!name.trim()) {
             UI.notify("Name is required ❌", "error");
-            return;
+            nameInput.focus();
+            return false;
         }
 
         if (!Validation.phone(phone)) {
+
             UI.notify(
                 "Enter a valid Indian mobile number (starts with 6–9) ❌",
                 "error"
             );
-            return;
+
+            phoneInput.focus();
+
+            return false;
         }
 
         /* Email validation */
         if (!Validation.email(email)) {
+
             UI.notify("Enter a valid email address ❌", "error");
-            return;
+
+            emailInput.focus();
+
+            return false;
         }
 
         if (Validation.duplicate(phone, this.contacts, this.editIndex)) {
+
             UI.notify("Duplicate contact ❌", "error");
-            return;
+
+            phoneInput.focus();
+
+            return false;
         }
 
         const contact = {
@@ -91,7 +108,7 @@ const App = {
         Storage.save(this.contacts);
         imageData = null;
         profileImageInput.value = "";
-        UI.render(this.contacts);
+        applyFiltersAndSort();
         this.updateStats();
         UI.toggleForm();
 
@@ -100,6 +117,7 @@ const App = {
                 ? "Contact updated successfully ✏️"
                 : "Contact added successfully ✅"
         );
+        return true;
     },
 
     edit(index) {
@@ -117,7 +135,7 @@ const App = {
 
         this.contacts.splice(index, 1);
         Storage.save(this.contacts);
-        UI.render(this.contacts);
+        applyFiltersAndSort();
         this.updateStats();
 
         UI.notify("Contact deleted 🗑️", "error");
@@ -134,7 +152,7 @@ const App = {
 
         Storage.save(this.contacts);
 
-        UI.render(this.contacts);
+        applyFiltersAndSort();
 
         this.updateStats();
     },
@@ -170,17 +188,28 @@ profileImageInput.addEventListener("change", function () {
 
 /* ===== FORM SUBMIT ===== */
 document.getElementById("contactForm").addEventListener("submit", e => {
+
     e.preventDefault();
 
-    App.save(
-        nameInput.value,
-        phoneInput.value,
-        emailInput.value,
-        document.getElementById("category").value
-
+    const saved = App.save(
+        nameInput.value.trim(),
+        phoneInput.value.trim(),
+        emailInput.value.trim(),
+        document.getElementById("category").value || "Other"
     );
 
-    e.target.reset();
+    if(saved) {
+
+        e.target.reset();
+
+        document.getElementById("category").value = "Other";
+
+        profileImageInput.value = "";
+
+        imageData = null;
+
+    }
+
 });
 
 // /* ===== SEARCH ===== */
