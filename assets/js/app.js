@@ -34,6 +34,7 @@ const App = {
 
         if (!name.trim()) {
             UI.notify("Name is required ❌", "error");
+            markInvalid(nameInput);
             nameInput.focus();
             return false;
         }
@@ -41,10 +42,11 @@ const App = {
         if (!Validation.phone(phone)) {
 
             UI.notify(
-                "Enter a valid Indian mobile number (starts with 6–9) ❌",
+                "Enter a valid  mobile number ",
                 "error"
             );
 
+            markInvalid(phoneInput);
             phoneInput.focus();
 
             return false;
@@ -55,6 +57,7 @@ const App = {
 
             UI.notify("Enter a valid email address ❌", "error");
 
+            markInvalid(emailInput);
             emailInput.focus();
 
             return false;
@@ -64,6 +67,7 @@ const App = {
 
             UI.notify("Duplicate contact ❌", "error");
 
+            markInvalid(phoneInput);
             phoneInput.focus();
 
             return false;
@@ -185,6 +189,45 @@ profileImageInput.addEventListener("change", function () {
 
 });
 
+/* =========================================
+   PREMIUM INVALID FIELD EFFECT
+========================================= */
+
+function markInvalid(input) {
+
+    if (!input) return;
+
+    input.classList.remove("input-invalid");
+
+    // Force animation to restart
+    void input.offsetWidth;
+
+    input.classList.add("input-invalid");
+}
+
+
+function clearInvalid(input) {
+
+    if (!input) return;
+
+    input.classList.remove("input-invalid");
+}
+
+
+/* Remove error effect when user starts typing */
+
+nameInput.addEventListener("input", () => {
+    clearInvalid(nameInput);
+});
+
+phoneInput.addEventListener("input", () => {
+    clearInvalid(phoneInput);
+});
+
+emailInput.addEventListener("input", () => {
+    clearInvalid(emailInput);
+});
+
 
 /* ===== FORM SUBMIT ===== */
 document.getElementById("contactForm").addEventListener("submit", e => {
@@ -198,7 +241,7 @@ document.getElementById("contactForm").addEventListener("submit", e => {
         document.getElementById("category").value || "Other"
     );
 
-    if(saved) {
+    if (saved) {
 
         e.target.reset();
 
