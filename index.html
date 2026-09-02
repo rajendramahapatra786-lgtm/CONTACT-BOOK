@@ -3,63 +3,626 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Welcome | Contact Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Book | Smart Contact Management</title>
 
     <style>
+        /* ================================
+           RESET
+        ================================= */
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            height: 100vh;
-            font-family: "Segoe UI", Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center,
-                    #e6f4ff 0%,
-                    #b3e5ff 35%,
-                    #5cc9ff 65%,
-                    #1a9cff 100%);
-            overflow: hidden;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* RGB GLOW BACKGROUND */
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            color: #0b1c3d;
+            background: #f7fbff;
+            overflow-x: hidden;
+        }
+
+
+        /* ================================
+           BACKGROUND EFFECTS
+        ================================= */
+
         body::before {
             content: "";
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: linear-gradient(135deg,
-                    #00c6ff,
-                    #0072ff,
-                    #7f00ff);
-            filter: blur(180px);
-            opacity: 0.6;
+            position: fixed;
+            width: 550px;
+            height: 550px;
+            top: -220px;
+            left: -180px;
+            background: #00c6ff;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.16;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .card {
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            right: -200px;
+            bottom: -220px;
+            background: #7f00ff;
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.13;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* ================================
+           HEADER
+        ================================= */
+
+        header {
+            width: 100%;
+            padding: 22px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: relative;
-            background: #ffffff;
-            width: 520px;
-            /* BIG SIZE */
-            padding: 70px 60px;
-            border-radius: 26px;
-            text-align: center;
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.25),
-                0 0 60px rgba(0, 140, 255, 0.45);
-            animation: float 5s ease-in-out infinite;
+            z-index: 10;
         }
 
-        @keyframes float {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #0b1c3d;
+        }
+
+        .brand-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
+
+            background: linear-gradient(
+                135deg,
+                #007bff,
+                #00c6ff,
+                #7f00ff
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            font-size: 21px;
+
+            box-shadow:
+                0 8px 22px rgba(0, 123, 255, 0.25);
+        }
+
+        .brand-name {
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .brand-name span {
+            color: #007bff;
+        }
+
+        .header-btn {
+            text-decoration: none;
+            padding: 11px 22px;
+            border-radius: 30px;
+
+            color: #007bff;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+
+            background: rgba(255, 255, 255, 0.75);
+
+            font-size: 14px;
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+        .header-btn:hover {
+            background: #007bff;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.25);
+        }
+
+
+        /* ================================
+           HERO
+        ================================= */
+
+        .hero {
+            min-height: calc(100vh - 88px);
+            padding: 55px 7% 70px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1180px;
+
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+
+        /* ================================
+           HERO CONTENT
+        ================================= */
+
+        .hero-content {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            background: rgba(0, 123, 255, 0.07);
+            border: 1px solid rgba(0, 123, 255, 0.12);
+
+            color: #0069d9;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 23px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00bfff;
+
+            box-shadow: 0 0 10px #00bfff;
+        }
+
+        h1 {
+            font-size: clamp(45px, 5vw, 70px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            font-weight: 750;
+            margin-bottom: 24px;
+        }
+
+        h1 span {
+            background: linear-gradient(
+                135deg,
+                #007bff,
+                #00aaff,
+                #7f00ff
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 570px;
+
+            color: #53627d;
+
+            font-size: 18px;
+            line-height: 1.75;
+
+            margin-bottom: 34px;
+        }
+
+
+        /* ================================
+           BUTTONS
+        ================================= */
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            border: none;
+            cursor: pointer;
+
+            padding: 15px 29px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #007bff,
+                #00b7ff
+            );
+
+            color: white;
+
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 650;
+
+            box-shadow:
+                0 12px 28px rgba(0, 123, 255, 0.27);
+
+            transition: 0.3s ease;
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow:
+                0 16px 35px rgba(0, 123, 255, 0.35);
+        }
+
+        .secondary-btn {
+            text-decoration: none;
+
+            padding: 14px 25px;
+
+            border-radius: 12px;
+
+            color: #243653;
+
+            background: white;
+
+            border: 1px solid #dfe8f4;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            transition: 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            transform: translateY(-3px);
+            border-color: #bcd8f7;
+            box-shadow: 0 10px 25px rgba(22, 72, 120, 0.08);
+        }
+
+
+        /* ================================
+           FEATURES
+        ================================= */
+
+        .features {
+            display: flex;
+            gap: 26px;
+            margin-top: 45px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #66748c;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .feature-icon {
+            width: 28px;
+            height: 28px;
+
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eef7ff;
+            color: #007bff;
+
+            font-size: 13px;
+        }
+
+
+        /* ================================
+           APP PREVIEW
+        ================================= */
+
+        .preview-wrapper {
+            position: relative;
+
+            animation:
+                fadeUp 0.9s ease forwards,
+                floating 5s ease-in-out infinite;
+
+            animation-delay: 0.15s;
+        }
+
+        .preview-glow {
+            position: absolute;
+
+            width: 330px;
+            height: 330px;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: linear-gradient(
+                135deg,
+                #00c6ff,
+                #007bff,
+                #7f00ff
+            );
+
+            filter: blur(90px);
+            opacity: 0.17;
+
+            z-index: -1;
+        }
+
+        .preview {
+            width: 100%;
+
+            background: rgba(255, 255, 255, 0.88);
+
+            border: 1px solid rgba(218, 229, 242, 0.9);
+
+            border-radius: 25px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 30px 80px rgba(27, 65, 105, 0.13);
+
+            backdrop-filter: blur(12px);
+        }
+
+
+        /* ================================
+           PREVIEW TOP
+        ================================= */
+
+        .preview-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+        }
+
+        .preview-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #172b4d;
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 5px;
+        }
+
+        .window-dots span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #d8e1ed;
+        }
+
+
+        /* ================================
+           SEARCH
+        ================================= */
+
+        .search-box {
+            height: 43px;
+
+            border-radius: 10px;
+
+            background: #f4f8fc;
+
+            border: 1px solid #e5edf6;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 13px;
+
+            gap: 9px;
+
+            color: #8b9ab0;
+
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* ================================
+           CONTACT ITEMS
+        ================================= */
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+
+            padding: 12px;
+
+            border-radius: 13px;
+
+            border: 1px solid #edf2f7;
+
+            background: white;
+
+            transition: 0.25s ease;
+        }
+
+        .contact:hover {
+            transform: translateX(3px);
+            border-color: #d6e8fb;
+            box-shadow: 0 8px 20px rgba(38, 103, 164, 0.07);
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            margin-right: 11px;
+        }
+
+        .avatar.one {
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+        }
+
+        .avatar.two {
+            background: linear-gradient(135deg, #7f00ff, #b44cff);
+        }
+
+        .avatar.three {
+            background: linear-gradient(135deg, #00a878, #00d4a1);
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-name {
+            color: #1a2c48;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 3px;
+        }
+
+        .contact-number {
+            color: #8a98ac;
+
+            font-size: 11px;
+        }
+
+        .favorite {
+            color: #ffb400;
+            font-size: 15px;
+        }
+
+
+        /* ================================
+           PREVIEW FOOTER
+        ================================= */
+
+        .preview-footer {
+            margin-top: 18px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            font-size: 11px;
+            color: #8b99ad;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            text-align: center;
+
+            padding: 22px;
+
+            color: #8a98ad;
+
+            font-size: 13px;
+
+            border-top: 1px solid rgba(222, 231, 241, 0.7);
+        }
+
+        footer strong {
+            color: #53627d;
+        }
+
+
+        /* ================================
+           ANIMATIONS
+        ================================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floating {
+
             0% {
                 transform: translateY(0);
             }
 
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-8px);
             }
 
             100% {
@@ -67,87 +630,426 @@
             }
         }
 
-        .logo {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 30px;
-            border-radius: 50%;
-            background: linear-gradient(135deg,
-                    #007bff,
-                    #00e5ff,
-                    #7f00ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 42px;
-            color: white;
-            box-shadow:
-                0 0 20px #00c6ff,
-                0 0 40px rgba(127, 0, 255, 0.6);
+
+        /* ================================
+           TABLET
+        ================================= */
+
+        @media (max-width: 900px) {
+
+            header {
+                padding: 20px 5%;
+            }
+
+            .hero {
+                padding: 45px 5% 60px;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 55px;
+                max-width: 650px;
+                text-align: center;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .features {
+                justify-content: center;
+            }
+
+            .preview-wrapper {
+                max-width: 500px;
+                width: 100%;
+                margin: auto;
+            }
+
+            h1 {
+                font-size: clamp(43px, 8vw, 60px);
+            }
         }
 
-        h1 {
-            margin: 0 0 14px;
-            font-size: 38px;
-            color: #0b1c3d;
-            /* DARK BLUE */
-            font-weight: 700;
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 17px 5%;
+            }
+
+            .brand-logo {
+                width: 40px;
+                height: 40px;
+                font-size: 19px;
+            }
+
+            .brand-name {
+                font-size: 18px;
+            }
+
+            .header-btn {
+                padding: 9px 15px;
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 55px 5% 50px;
+            }
+
+            .hero-container {
+                gap: 45px;
+            }
+
+            .badge {
+                font-size: 11px;
+                padding: 7px 11px;
+            }
+
+            h1 {
+                font-size: 42px;
+                letter-spacing: -1.7px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+                line-height: 1.65;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .primary-btn,
+            .secondary-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .features {
+                gap: 14px;
+                justify-content: center;
+            }
+
+            .feature {
+                font-size: 11px;
+            }
+
+            .preview {
+                padding: 16px;
+                border-radius: 20px;
+            }
+
+            .preview-title {
+                font-size: 14px;
+            }
+
+            .contact {
+                padding: 10px;
+            }
+
+            .avatar {
+                width: 36px;
+                height: 36px;
+                margin-right: 9px;
+            }
+
+            .contact-name {
+                font-size: 12px;
+            }
+
+            .contact-number {
+                font-size: 10px;
+            }
+
+            footer {
+                font-size: 11px;
+            }
         }
 
-        p {
-            margin: 0 0 40px;
-            font-size: 17px;
-            color: #3b4a6b;
+
+        /* ================================
+           SMALL MOBILE
+        ================================= */
+
+        @media (max-width: 380px) {
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .brand-name {
+                font-size: 16px;
+            }
+
+            .header-btn {
+                padding: 8px 12px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
-        button {
-            padding: 16px 52px;
-            font-size: 17px;
-            border: none;
-            border-radius: 40px;
-            cursor: pointer;
-            background: linear-gradient(135deg,
-                    #007bff,
-                    #00c6ff);
-            color: white;
-            font-weight: 600;
-            letter-spacing: 0.6px;
-            font-family: inherit;
-            box-shadow:
-                0 12px 30px rgba(0, 123, 255, 0.6);
-            transition: all 0.35s ease;
-        }
-
-        button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow:
-                0 0 15px #00c6ff,
-                0 0 30px #7f00ff,
-                0 0 50px rgba(127, 0, 255, 0.7);
-        }
-
-        .footer {
-            margin-top: 35px;
-            font-size: 14px;
-            color: #6b7a99;
-        }
     </style>
 </head>
 
+
 <body>
 
-    <div class="card">
-        <div class="logo">📒</div>
-        <h1>Contact Book</h1>
-        <p>Smart, simple and secure contact management</p>
-        <button onclick="openApp()">Enter</button>
-        <div class="footer">Built with ❤️ by Rajendra</div>
-    </div>
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header>
+
+        <a href="#" class="brand">
+
+            <div class="brand-logo">
+                📒
+            </div>
+
+            <div class="brand-name">
+                Contact<span>Book</span>
+            </div>
+
+        </a>
+
+        <a href="main.html" class="header-btn">
+            Open App
+        </a>
+
+    </header>
+
+
+    <!-- ================================
+         HERO
+    ================================= -->
+
+    <main class="hero">
+
+        <div class="hero-container">
+
+
+            <!-- LEFT CONTENT -->
+
+            <section class="hero-content">
+
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    Smart Contact Management
+                </div>
+
+                <h1>
+                    Your contacts.
+                    <br>
+                    <span>Organized beautifully.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Manage your contacts effortlessly with a fast,
+                    secure and beautifully designed contact book.
+                    Keep everything organized and accessible in one place.
+                </p>
+
+
+                <div class="hero-actions">
+
+                    <button
+                        class="primary-btn"
+                        onclick="openApp()">
+                        Get Started&nbsp; →
+                    </button>
+
+                    <a
+                        href="main.html"
+                        class="secondary-btn">
+                        Explore Contacts
+                    </a>
+
+                </div>
+
+
+                <!-- FEATURES -->
+
+                <div class="features">
+
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        Fast Search
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        Private & Secure
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">⭐</div>
+                        Smart Favorites
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT APP PREVIEW -->
+
+            <section class="preview-wrapper">
+
+                <div class="preview-glow"></div>
+
+                <div class="preview">
+
+                    <div class="preview-top">
+
+                        <div class="preview-title">
+                            My Contacts
+                        </div>
+
+                        <div class="window-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- SEARCH -->
+
+                    <div class="search-box">
+                        🔍
+                        <span>Search contacts...</span>
+                    </div>
+
+
+                    <!-- CONTACTS -->
+
+                    <div class="contact-list">
+
+                        <div class="contact">
+
+                            <div class="avatar one">
+                                RM
+                            </div>
+
+                            <div class="contact-info">
+
+                                <div class="contact-name">
+                                    Rajendra Mahapatra
+                                </div>
+
+                                <div class="contact-number">
+                                    +91 98765 43210
+                                </div>
+
+                            </div>
+
+                            <div class="favorite">
+                                ★
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact">
+
+                            <div class="avatar two">
+                                AS
+                            </div>
+
+                            <div class="contact-info">
+
+                                <div class="contact-name">
+                                    Ananya Sharma
+                                </div>
+
+                                <div class="contact-number">
+                                    +91 91234 56789
+                                </div>
+
+                            </div>
+
+                            <div class="favorite">
+                                ☆
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact">
+
+                            <div class="avatar three">
+                                RK
+                            </div>
+
+                            <div class="contact-info">
+
+                                <div class="contact-name">
+                                    Rahul Kumar
+                                </div>
+
+                                <div class="contact-number">
+                                    +91 87654 32109
+                                </div>
+
+                            </div>
+
+                            <div class="favorite">
+                                ★
+                            </div>
+
+                        </div>
+
+                    </div>
+                    
+                    <!-- PREVIEW FOOTER -->
+
+                    <div class="preview-footer">
+
+                        <div class="status">
+                            <span class="status-dot"></span>
+                            All contacts synced
+                        </div>
+
+                        <span>
+                            24 contacts
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <footer>
+        © 2026 <strong>ContactBook</strong> · Built with ❤️ by Rajendra
+    </footer>
 
     <script>
+
         function openApp() {
             window.location.href = "main.html";
         }
+
     </script>
 
 </body>
