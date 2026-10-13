@@ -92,27 +92,4 @@ No backend or server required.
 **Rajendra**\
 Built with ❤️ using JavaScript
 
-------------------------------------------------------------------------
 
-## 🎯 Future Improvements
-
--   Contact image upload\
--   Export contacts to CSV\
--   Sorting feature\
--   Backend database integration\
--   Login authentication
-
-------------------------------------------------------------------------
-
-## 📌 Project Summary
-
-This project demonstrates strong understanding of:
-
--   JavaScript fundamentals\
--   Modular programming\
--   Real-world CRUD operations\
--   Clean UI design\
--   Theme management
-
-It is a complete mini front-end project suitable for college submission
-and portfolio.
