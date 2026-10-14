@@ -76,17 +76,6 @@ Handles saving and retrieving contacts from browser LocalStorage.
 
 ------------------------------------------------------------------------
 
-## ▶️ How to Run the Project
-
-1.  Download or clone the project
-2.  Open `index.html`
-3.  Click **Enter**
-4.  Start adding contacts
-
-No backend or server required.
-
-------------------------------------------------------------------------
-
 ## 👨‍💻 Author
 
 **Rajendra**\
